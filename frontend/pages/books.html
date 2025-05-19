@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Books - Chaitanya's Website</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <style>
+    .books-list-section { padding: 80px 0; background-color: var(--light-gray); }
+    .book-item { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 2em; padding: 2em; }
+    .pagination { display: flex; gap: 1em; align-items: center; justify-content: center; margin: 2em 0; }
+    .pagination button { background: var(--primary-color); color: #fff; border: none; border-radius: 4px; padding: 0.5em 1.5em; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    .pagination button:disabled { background: #ccc; cursor: not-allowed; }
+    .pagination span { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">Chaitanya Sharma</div>
+        <ul class="nav-items">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section class="books-list-section">
+    <div class="container">
+      <h1 class="section-title">Books</h1>
+      <div id="books-list"></div>
+      <div class="pagination">
+        <button id="prev-page">Previous</button>
+        <span id="page-info"></span>
+        <button id="next-page">Next</button>
+      </div>
+      <script src="../scripts/books-list.js"></script>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-copyright">© 2025 Chaitanya Sharma. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="index.html#about">About</a>
+          <a href="index.html#projects">Projects</a>
+          <a href="index.html#books">Books</a>
+          <a href="index.html#gallery">Gallery</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 

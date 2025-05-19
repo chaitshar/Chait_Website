@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaitanya Sharma | :D</title>
+  <style>
+    :root {
+      --primary-color: #0070f3;
+      --text-color: #333;
+      --light-gray: #f5f5f5;
+      --medium-gray: #e0e0e0;
+      --dark-gray: #666;
+      --link-hover: #0051a8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #fafafa;
+      padding: 0;
+      margin: 0;
+    }
+    a { color: var(--primary-color); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    header { padding: 40px 0 30px; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: 600; }
+    .nav-items { display: flex; list-style: none; }
+    .nav-items li { margin-left: 20px; }
+    .hero { padding: 60px 0; }
+    .hero h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 20px; font-weight: 700; }
+    .hero p { font-size: 1.25rem; color: var(--dark-gray); max-width: 600px; margin-bottom: 30px; }
+    #hero-dynamic-word { transition: opacity 0.5s; color: var(--primary-color); }
+    #hero-dynamic-word.fade-out { opacity: 0; }
+    #hero-dynamic-word.fade-in { opacity: 1; animation: fadeIn 0.5s forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .about { padding: 80px 0; background-color: #e0f7fa; }
+    .section-title { font-size: 2rem; margin-bottom: 20px; font-weight: 600; }
+    .about-content { display: flex; gap: 40px; margin-top: 30px; }
+    .about-text { flex: 2; }
+    .about-image { flex: 1; }
+    .about-image img { width: 100%; border-radius: 10px; }
+    .projects { padding: 80px 0; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+    .project-card { border: 1px solid var(--medium-gray); border-radius: 8px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+    .project-image { height: 200px; background-color: var(--medium-gray); display: inline; object-fit: cover; align-items: center; justify-content: center; }
+    .project-image img { max-width: 100%; max-height: 100%; }
+    .project-content { padding: 20px; }
+    .project-title { font-size: 1.25rem; margin-bottom: 10px; }
+    .project-description { color: var(--dark-gray); margin-bottom: 15px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+    .tag { background-color: var(--light-gray); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; }
+    .experience { padding: 80px 0; background-color: var(--light-gray); }
+    .timeline { margin-top: 40px; }
+    .timeline-item { display: flex; margin-bottom: 30px; }
+    .timeline-date { width: 150px; font-weight: 600; padding-right: 20px; }
+    .timeline-content { flex: 1; }
+    .timeline-title { font-size: 1.2rem; margin-bottom: 5px; }
+    .timeline-company { color: var(--primary-color); margin-bottom: 10px; }
+    .timeline-description { color: var(--dark-gray); }
+    .books { padding: 80px 0; background-color: var(--light-gray); }
+    .carousel-container { position: relative; margin-top: 40px; padding: 0 40px; overflow: hidden; }
+    .books-carousel { display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding: 20px 0; scrollbar-width: none; -ms-overflow-style: none; }
+    .books-carousel::-webkit-scrollbar { display: none; }
+    .book-card { min-width: 280px; max-width: 320px; flex: 0 0 auto; }
+    .book-cover { height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .book-cover img { width: 100%; height: 100%; object-fit: cover; }
+    .book-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .book-title { font-size: 1.25rem; margin-bottom: 5px; }
+    .book-author { color: var(--primary-color); margin-bottom: 15px; font-style: italic; }
+    .book-description { color: var(--dark-gray); margin-bottom: 15px; flex: 1; }
+    .carousel-button { position: absolute; top: 50%; transform: translateY(-50%); background: white; border: 1px solid var(--medium-gray); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); z-index: 10; transition: background-color 0.3s ease; }
+    .carousel-button:hover { background-color: var(--light-gray); }
+    .prev-button { left: 0; }
+    .next-button { right: 0; }
+    .contact { padding: 80px 0; }
+    .contact-content { display: flex; gap: 40px; margin-top: 30px; }
+    .contact-info { flex: 1; }
+    .contact-item { margin-bottom: 20px; }
+    .contact-item h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .social-links { display: flex; gap: 20px; align-items: center; margin-top: 20px; }
+    .social-link { width: 40px; height: 40px; border-radius: 50%; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease; color: #333; font-size: 1.3em; }
+    .social-link:hover { background-color: #e0e0e0; color: var(--primary-color); }
+    footer { padding: 40px 0; border-top: 1px solid var(--medium-gray); background: #f5f5f5; }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1em; }
+    .footer-copyright { font-size: 0.9rem; color: var(--dark-gray); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: var(--primary-color); font-size: 1em; }
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; align-items: flex-start; }
+      .nav-items { margin-top: 20px; }
+      .nav-items li:first-child { margin-left: 0; }
+      .hero h1 { font-size: 2.5rem; }
+      .about-content { flex-direction: column; }
+      .timeline-item { flex-direction: column; }
+      .timeline-date { width: 100%; margin-bottom: 10px; }
+      .contact-content { flex-direction: column; }
+      .footer-content { flex-direction: column; align-items: flex-start; }
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin: 2em 0;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .music .spotify-widgets {
+      display: flex;
+      gap: 2em;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 2em;
+    }
+    .music-covers {
+      margin-top: 1em;
+    }
+    .music-covers a {
+      color: var(--primary-color);
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">Chaitanya Sharma</div>
+        <ul class="nav-items">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#books">Books</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <h1>Product Manager <br>& <span id="hero-dynamic-word">Writer</span></h1>
+      <p>I create digital products with a focus on user experience and clean, maintainable code. Currently working on an exciting FinTech startup.</p>
+      <a href="#contact" class="cta-button">Get in touch</a>
+    </div>
+  </section>
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Hi, I'm Chaitanya Sharma a Product Manager, builder, storyteller, and AI enthusiast based in New Delhi, India.
+I've worked on everything from NLP spell checkers and zero-code website platforms to data-driven consulting projects and sustainable fashion models. My work has spanned product management, marketing, AI, and strategic research for names like IMDb, Dell, and Lenskart. Along the way, I've picked up crucial conversational skills and a strong knack for making sense of chaos.
+When I'm not analyzing user flows or pitching roadmaps, you'll find me jamming to Green Day, debating tech's future, cycling through NCR, or dreaming up my next big idea.
+This site is my digital home ; where I showcase my work, share thoughts. Let's build something awesome.</p>
+        </div>
+        <div class="about-image">
+          <img src="../assets/Chaitanya.jpg" alt="Profile Image">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="../assets/Bozo.jpg" alt="Project 1">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Bozo Mera Bhai</h3>
+            <p class="project-description">Spawned a cultural movement in college by growing instagram gimmic account. In my niche internet micro celeb era, wherein I made memes about a street dog - a white labra named Bozo</p>
+            <div class="project-tags">
+              <span class="tag">Marketing</span>
+              <span class="tag">Advertising</span>
+              <span class="tag">Storytelling</span>
+            </div>
+            <a href="https://www.instagram.com/bozomerabhai/" class="project-link">View Project →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="../assets/FinTechFriyay.webp" alt="FintechFriyay!!!">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">FintechFriyay!!!</h3>
+            <p class="project-description">A weekly blog that I run which summarises my understanding of FinTech in a not so byte sized chunks manner. This is in line with my day job, I am buidling 0 -> 1 fintech infrastrcuture for a Bahraini PSP. </p>
+            <div class="project-tags">
+              <span class="tag">Brainstorming</span>
+              <span class="tag">Pricing</span>
+              <span class="tag">Prototyping</span>
+              <span class="tag">UX/UI</span>
+            </div>
+            <a href="#" class="project-link">View Project →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="../assets/Yinyang.webp" alt="Writing">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Writing</h3>
+            <p class="project-description">I find writing to be extremely cathartic. I have been a huge proponent of using a pen and paper to bring order to chaos. Helps me in externalising my internal workings. In the process, I also find like minded people who value deep discussions.</p>
+            <div class="project-tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">AWS</span>
+            </div>
+            <a href="#" class="project-link">View Project →</a>
+          </div>
+        </div>
+      </div>
+      <a class="load-more-btn" href="projects.html">Load More Projects →</a>
+    </div>
+  </section>
+  <section id="experience" class="experience">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Jun'2023 - Apr'2025</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Product</h3>
+            <div class="timeline-company">Sprinklr</div>
+            <p class="timeline-description">Worked on a no-code discussion forum/community builder for clients such as Polestar, Amazon IMDb, TrendMicro, Kia, Deutsche Telekom</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2021 - 2023</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">AI Intern</h3>
+            <div class="timeline-company">University of Cambridge</div>
+            <p class="timeline-description">Published a research paper about binary text classification machine learning algorithms. Performed NLP tasks such as annotation, key word extraction, text classification and summarisation.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Jun'2022 - Aug'2022</div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Data Science/NLP Intern</h3>
+            <div class="timeline-company">PolicyBazaar.com</div>
+            <p class="timeline-description">Built an n-gram statistical spell checker for customer chat bots. Possibly improve chatbot accuracy by 10% </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="books" class="books">
+    <div class="container">
+      <h2 class="section-title">Books I Recommend</h2>
+      <p>Here are some of my favorite books that have influenced my thinking and work.</p>
+      <div class="carousel-container">
+        <button class="carousel-button prev-button" id="books-prev" aria-label="Previous books">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="books-carousel" id="books-carousel">
+          <!-- Book cards will be loaded here by books.js -->
+        </div>
+        <button class="carousel-button next-button" id="books-next" aria-label="Next books">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+      <a class="load-more-btn" href="books.html">Load More Books →</a>
+    </div>
+  </section>
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery-grid">
+        <img src="../assets/mastichanket.jpeg" alt="mastichanket" />
+        <img src="../assets/chanket.jpeg" alt="chanket" />
+        <img src="../assets/fullmastichanket.jpeg" alt="fullmastichanket" />
+        <img src="../assets/Chaitanya.jpg" alt="Chaitanya" />
+       
+      </div>
+      <a class="load-more-btn" href="gallery.html">Load More Gallery →</a>
+    </div>
+  </section>
+  <section id="music" class="music">
+    <div class="container">
+      <h2 class="section-title">Music</h2>
+      <div class="spotify-widgets">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3BasybBcyGBTnQE9EfSjSL?utm_source=generator" width="300" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div>
+          <h3>Top Artists</h3>
+          <ul id="spotify-artists"></ul>
+          <h3>Top Tracks</h3>
+          <ul id="spotify-tracks"></ul>
+        </div>
+      </div>
+      <div class="music-covers">
+        <h3>My Covers</h3>
+        <a href="https://www.instagram.com/chaitshar/" target="_blank">Watch on Instagram</a>
+        <!-- Add more cover links or embed videos here -->
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>Mail</h3>
+            <p><a href="mailto:chaitanya.sharma2001@outlook.com">chaitanya.sharma2001@outlook.com</a></p>
+          </div>
+          <div class="contact-item">
+            <h3>Location</h3>
+            <p>New Delhi, India</p>
+          </div>
+          <div class="contact-item">
+            <h3>Socials</h3>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/chaitshar/" class="social-link" aria-label="LinkedIn">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle><rect x="8" y="9" width="4" height="12"></rect><rect x="14" y="9" width="4" height="12"></rect></svg>
+              </a>
+              <a href="https://x.com/yuhyuhyuhchsh" class="social-link" aria-label="Twitter">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+              </a>
+              <a href="https://github.com/chaitshar" class="social-link" aria-label="GitHub">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1.01.07 1.54 1.04 1.54 1.04.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.115 2.51.337 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.16.58.67.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"></path></svg>
+              </a>
+              <a href="https://instagram.com/chaitshar" class="social-link" aria-label="Instagram">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-copyright">© 2025 Chaitanya Sharma. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#books">Books</a>
+          <a href="#gallery">Gallery</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../scripts/books.js"></script>
+  <script>
+  // Dynamic hero section word cycling
+  (function() {
+    const words = ['Writer', 'Builder', 'Creator', 'Storyteller', 'AI Enthusiast'];
+    let idx = 0;
+    const el = document.getElementById('hero-dynamic-word');
+    setInterval(() => {
+      el.classList.remove('fade-in');
+      el.classList.add('fade-out');
+      setTimeout(() => {
+        idx = (idx + 1) % words.length;
+        el.textContent = words[idx];
+        el.classList.remove('fade-out');
+        el.classList.add('fade-in');
+      }, 400);
+    }, 2000);
+  })();
+  </script>
+  <script>
+  // Fetch Spotify data from backend (update URL as needed)
+  fetch('https://your-backend-url/api/spotify/top-artists')
+    .then(res => res.json())
+    .then(artists => {
+      document.getElementById('spotify-artists').innerHTML = artists.map(a => `<li>${a.name}</li>`).join('');
+    });
+  fetch('https://your-backend-url/api/spotify/top-tracks')
+    .then(res => res.json())
+    .then(tracks => {
+      document.getElementById('spotify-tracks').innerHTML = tracks.map(t => `<li>${t.name} <span style='color:#666;'>by ${t.artists.map(a=>a.name).join(', ')}</span></li>`).join('');
+    });
+  </script>
+</body>
+</html> 

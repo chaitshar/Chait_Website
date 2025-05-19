@@ -1,0 +1,37 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+nav { background: #222; padding: 1em 0; }
+nav ul { list-style: none; display: flex; justify-content: center; margin: 0; padding: 0; }
+nav ul li { margin: 0 1em; }
+nav ul li a { color: #fff; text-decoration: none; font-weight: bold; }
+nav ul li a:hover { text-decoration: underline; }
+main { max-width: 800px; margin: 2em auto; background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.load-more-btn {
+  display: inline-block;
+  margin-top: 1em;
+  padding: 0.5em 1.5em;
+  background: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+.load-more-btn:hover {
+  background: #0056b3;
+}
+.gallery-widget img {
+  margin-right: 0.5em;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.project-list, .book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+.project-item, .book-item {
+  background: #f5f5f5;
+  padding: 1em;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+} 
