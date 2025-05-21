@@ -287,20 +287,20 @@ This site is my digital home ; where I showcase my work, share thoughts. Let's b
   </section>
   <section id="music" class="music">
     <div class="container">
-      <h2 class="section-title">Music</h2>
+      <h2 class="section-title">My Music</h2>
       <div class="spotify-widgets">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3BasybBcyGBTnQE9EfSjSL?utm_source=generator" width="300" height="380" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <div>
-          <h3>Top Artists</h3>
-          <ul id="spotify-artists"></ul>
+        <div class="spotify-section">
           <h3>Top Tracks</h3>
-          <ul id="spotify-tracks"></ul>
+          <div id="top-tracks" class="music-covers">
+            Loading...
+          </div>
         </div>
-      </div>
-      <div class="music-covers">
-        <h3>My Covers</h3>
-        <a href="https://www.instagram.com/chaitshar/" target="_blank">Watch on Instagram</a>
-        <!-- Add more cover links or embed videos here -->
+        <div class="spotify-section">
+          <h3>Top Artists</h3>
+          <div id="top-artists" class="music-covers">
+            Loading...
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -372,17 +372,47 @@ This site is my digital home ; where I showcase my work, share thoughts. Let's b
   })();
   </script>
   <script>
-  // Fetch Spotify data from backend (update URL as needed)
-  fetch('https://your-backend-url/api/spotify/top-artists')
-    .then(res => res.json())
-    .then(artists => {
-      document.getElementById('spotify-artists').innerHTML = artists.map(a => `<li>${a.name}</li>`).join('');
-    });
-  fetch('https://your-backend-url/api/spotify/top-tracks')
-    .then(res => res.json())
-    .then(tracks => {
-      document.getElementById('spotify-tracks').innerHTML = tracks.map(t => `<li>${t.name} <span style='color:#666;'>by ${t.artists.map(a=>a.name).join(', ')}</span></li>`).join('');
-    });
+    async function fetchSpotifyData(type) {
+      try {
+        const response = await fetch(`/api/spotify?type=${type}`);
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error(`Error fetching ${type}:`, error);
+        return null;
+      }
+    }
+
+    async function displaySpotifyData() {
+      // Fetch and display top tracks
+      const tracksData = await fetchSpotifyData('tracks');
+      if (tracksData && tracksData.items) {
+        const tracksHtml = tracksData.items.map(track => `
+          <div class="track-item">
+            <a href="${track.external_urls.spotify}" target="_blank" rel="noopener noreferrer">
+              ${track.name} - ${track.artists.map(artist => artist.name).join(', ')}
+            </a>
+          </div>
+        `).join('');
+        document.getElementById('top-tracks').innerHTML = tracksHtml;
+      }
+
+      // Fetch and display top artists
+      const artistsData = await fetchSpotifyData('artists');
+      if (artistsData && artistsData.items) {
+        const artistsHtml = artistsData.items.map(artist => `
+          <div class="artist-item">
+            <a href="${artist.external_urls.spotify}" target="_blank" rel="noopener noreferrer">
+              ${artist.name}
+            </a>
+          </div>
+        `).join('');
+        document.getElementById('top-artists').innerHTML = artistsHtml;
+      }
+    }
+
+    // Call the function when the page loads
+    document.addEventListener('DOMContentLoaded', displaySpotifyData);
   </script>
 </body>
 </html> 

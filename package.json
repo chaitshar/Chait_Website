@@ -1,0 +1,12 @@
+{
+  "name": "chaitanya-website",
+  "version": "1.0.0",
+  "description": "Personal website of Chaitanya Sharma",
+  "scripts": {
+    "start": "serve frontend",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+} 
